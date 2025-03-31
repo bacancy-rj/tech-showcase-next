@@ -26,7 +26,7 @@ export function SideNavBar() {
           </h3>
         </Link>
       </div>
-      <div className='lg:hidden'>
+      <div className='lg:hidden absolute right-28 top-0 flex h-14 items-center'>
         <ThemeModeToggle />
       </div>
       <button
@@ -34,7 +34,9 @@ export function SideNavBar() {
         className='group absolute right-0 top-0 flex h-14 items-center gap-x-2 px-4 lg:hidden'
         onClick={() => setIsOpen(!isOpen)}
       >
-        <div className='font-medium text-gray-100 group-hover:text-gray-400'>Menu</div>
+        <div className='font-medium text-gray-400 group-hover:text-black dark:group-hover:text-white'>
+          Menu
+        </div>
         {isOpen ? (
           <XMarkIcon className='block w-6 text-gray-400' />
         ) : (
@@ -43,10 +45,10 @@ export function SideNavBar() {
       </button>
 
       <div
-        className={clsx('overflow-y-auto lg:static lg:block', {
-          'fixed inset-x-0 bottom-0 top-14 mt-px bg-black': isOpen,
+        className={`${clsx('overflow-y-auto lg:static lg:block', {
+          'fixed inset-x-0 bottom-0 top-14 mt-px bg-white dark:bg-black': isOpen,
           hidden: !isOpen,
-        })}
+        })}`}
       >
         <nav className='space-y-6 px-2 pb-24 pt-5'>
           {sideBarItemList.map((section) => {
@@ -75,7 +77,6 @@ export function SideNavBar() {
 
 function SideNavBarItem({ item, close }: { item: Item; close: () => false | void }) {
   const segment = useSelectedLayoutSegment();
-  console.log({ first: segment, second: item.slug });
   const isActive = item.slug === segment;
 
   return (
@@ -83,7 +84,7 @@ function SideNavBarItem({ item, close }: { item: Item; close: () => false | void
       onClick={close}
       href={`/${item.slug}`}
       className={clsx('block rounded-md px-3 py-2 text-sm font-medium hover:text-gray-600', {
-        'text-gray-600 hover:bg-gray-800 hover:text-white': !isActive,
+        'text-gray-600 hover:bg-gray-600 hover:text-white': !isActive,
         'text-black dark:text-white': isActive,
       })}
     >

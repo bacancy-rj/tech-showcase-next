@@ -13,6 +13,11 @@ export const sideBarItemList: { name: string; items: Item[] }[] = [
         slug: 'layouts',
         description: 'Organize routes without affecting URL paths',
       },
+      {
+        name: 'Dynamic Routes (SSR)',
+        slug: 'users',
+        description: 'Dynamic routes with user profiles page',
+      },
     ],
   },
 ];

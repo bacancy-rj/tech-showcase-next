@@ -33,8 +33,6 @@ export function AddressBar() {
   const pathname = usePathname();
   const [currentUrl, setCurrentUrl] = useState<Location | null>(null);
 
-  console.log({ pathname });
-
   useEffect(() => {
     // Check if the code is running on the client side
     if (process) {
