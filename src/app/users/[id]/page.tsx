@@ -5,6 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
+import { PageProps } from '../../../../.next/types/app/page';
 
 // Define User type
 interface User {
@@ -45,8 +46,10 @@ async function getUserData(id: string): Promise<User> {
 }
 
 // Server component for rendering user details
-export default async function UserDetailPage({ params }: { params: { id: string } }) {
-  const user = await getUserData(params.id);
+export default async function UserDetailPage({ params }: PageProps) {
+  // asynchronous access of `params.id`.
+  const { id } = await params;
+  const user = await getUserData(id);
 
   return (
     <div className='p-6'>
