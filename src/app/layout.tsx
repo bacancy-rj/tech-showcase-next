@@ -6,6 +6,7 @@ import { ThemeProvider } from 'next-themes';
 import { AddressBar } from '@/components/ui/address-bar';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://tech-showcase-next.vercel.app/'),
   title: 'Next.js Tech Showcase',
   description:
     'The Tech Showcase is a demo project designed to illustrate the integration of a comprehensive modern web development tech stack.',

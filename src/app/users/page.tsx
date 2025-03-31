@@ -34,8 +34,7 @@ export default async function UsersPage() {
   let users: User[] = [];
   try {
     const response = await fetch('https://jsonplaceholder.typicode.com/users', {
-      // Ensure fresh data during development
-      cache: 'no-store',
+      next: { revalidate: 60 }, // Revalidate every 60 seconds
     });
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
