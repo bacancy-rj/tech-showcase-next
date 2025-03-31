@@ -7,9 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function UsersLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <section>
-      <div className='max-w-7xl mx-auto'>{children}</div>
-    </section>
-  );
+  return <div>{children}</div>;
 }

@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
+import { UserDetailSkeleton } from '@/components/skeletons/user-detail-skeleton';
 import { PageProps } from '../../../../.next/types/app/page';
 
 // Define User type
@@ -45,14 +46,12 @@ async function getUserData(id: string): Promise<User> {
   return response.json();
 }
 
-// Server component for rendering user details
-export default async function UserDetailPage({ params }: PageProps) {
-  // asynchronous access of `params.id`.
-  const { id } = await params;
+// User detail component to be wrapped in Suspense
+async function UserDetail({ id }: { id: string }) {
   const user = await getUserData(id);
 
   return (
-    <div className='p-6'>
+    <>
       <Button variant='outline' className='mb-6' asChild>
         <Link href='/users'>Back to Users</Link>
       </Button>
@@ -117,6 +116,20 @@ export default async function UserDetailPage({ params }: PageProps) {
           </div>
         </CardContent>
       </Card>
+    </>
+  );
+}
+
+// Server component for rendering user details
+export default async function UserDetailPage({ params }: PageProps) {
+  // asynchronous access of `params.id`.
+  const { id } = await params;
+
+  return (
+    <div className='p-6'>
+      <Suspense fallback={<UserDetailSkeleton />}>
+        <UserDetail id={id} />
+      </Suspense>
     </div>
   );
 }

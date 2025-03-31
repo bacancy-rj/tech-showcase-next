@@ -22,7 +22,7 @@ export function SideNavBar() {
           </div>
 
           <h3 className='font-semibold tracking-wide dark:text-gray-400 group-hover:dark:text-gray-50'>
-            Next.js Tech Showcase
+            Tech Showcase
           </h3>
         </Link>
       </div>
