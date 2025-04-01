@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
 import { UserDetailSkeleton } from '@/components/skeletons/user-detail-skeleton';
-import { PageProps } from '../../../../.next/types/app/page';
+import { PageProps } from '../../../../.next/types/app/users/[id]/page';
 
 // Define User type
 interface User {
@@ -126,10 +126,8 @@ export default async function UserDetailPage({ params }: PageProps) {
   const { id } = await params;
 
   return (
-    <div className='p-6'>
-      <Suspense fallback={<UserDetailSkeleton />}>
-        <UserDetail id={id} />
-      </Suspense>
-    </div>
+    <Suspense fallback={<UserDetailSkeleton />}>
+      <UserDetail id={id} />
+    </Suspense>
   );
 }

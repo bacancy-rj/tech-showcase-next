@@ -12,8 +12,8 @@ const Label = ({
 }) => {
   return (
     <div
-      className={clsx('rounded-full px-1.5 shadow-[0_0_1px_3px_black]', {
-        'bg-gray-800 text-white dark:text-gray-300': color === 'default',
+      className={clsx('rounded-full font-semibold px-1.5 py-0.5 dark:shadow-[0_0_1px_3px_black]', {
+        'bg-gray-800 text-white dark:text-gray-200': color === 'default',
         'bg-vercel-pink text-white': color === 'pink',
         'bg-vercel-blue text-white': color === 'blue',
         'bg-vercel-cyan text-white': color === 'cyan',

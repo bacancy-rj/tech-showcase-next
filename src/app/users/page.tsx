@@ -48,7 +48,11 @@ async function UsersList() {
   return (
     <>
       {users.map((user) => (
-        <Link href={`/users/${user.id}`} key={user.id} className='no-underline'>
+        <Link
+          href={{ pathname: `/users/${user.id}`, query: { userName: `@${user.username}` } }}
+          key={user.id}
+          className='no-underline'
+        >
           <Card className='h-full hover:shadow-lg transition-all duration-200 hover:-translate-y-1'>
             <CardHeader className='pb-2'>
               <div className='flex items-center gap-4'>
@@ -85,13 +89,13 @@ function UsersGridSkeleton() {
 // Main page component
 export default function UsersPage() {
   return (
-    <div className='p-6'>
+    <>
       <h1 className='text-3xl font-bold mb-6'>User Profiles</h1>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
         <Suspense fallback={<UsersGridSkeleton />}>
           <UsersList />
         </Suspense>
       </div>
-    </div>
+    </>
   );
 }
