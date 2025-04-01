@@ -1,5 +1,6 @@
+import { Boundary } from '@/components/ui/boundary';
 import { Metadata } from 'next';
-import React from 'react';
+import React, { Suspense } from 'react';
 
 export const metadata: Metadata = {
   title: 'Dynamic Routing',
@@ -7,5 +8,9 @@ export const metadata: Metadata = {
 };
 
 export default function UsersLayout({ children }: { children: React.ReactNode }) {
-  return <div>{children}</div>;
+  return (
+    <Suspense fallback={<Boundary labels={['User Profiles']}>Loading...</Boundary>}>
+      {children}
+    </Suspense>
+  );
 }
